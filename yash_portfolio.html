@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Yash Kumar — AI Researcher & Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f2ec;
+    --accent: #1a3a5c;
+    --accent2: #c8550a;
+    --muted: #6b6760;
+    --border: #ddd9d0;
+    --card: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-btn {
+    background: var(--accent) !important;
+    color: #fff !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 4px;
+    font-size: 0.8rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-btn:hover { background: var(--accent2) !important; }
+
+  /* SECTIONS */
+  section { scroll-margin-top: 70px; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+  }
+  .hero-left {
+    padding: 8rem 3rem 4rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent2);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent2); }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1.05rem; font-weight: 300;
+    color: var(--muted); max-width: 440px;
+    margin-bottom: 2.5rem; line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 0.8rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1px solid var(--border); color: var(--ink);
+    padding: 0.8rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 400;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  .hero-right {
+    background: var(--accent);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: 'AI';
+    position: absolute; bottom: -2rem; right: -1rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18rem; color: rgba(255,255,255,0.04);
+    line-height: 1; pointer-events: none;
+  }
+  .stat-row { display: flex; flex-direction: column; gap: 2rem; }
+  .stat { border-left: 2px solid rgba(255,255,255,0.2); padding-left: 1.5rem; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem; color: #fff; line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* SECTION STYLES */
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-tag {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent2);
+    margin-bottom: 0.75rem; display: block;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em; line-height: 1.1;
+  }
+
+  /* ABOUT */
+  #about { background: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .skills-block { margin-top: 2rem; }
+  .skills-block h3 { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    background: var(--paper); border: 1px solid var(--border);
+    padding: 0.3rem 0.8rem; border-radius: 3px;
+    font-size: 0.8rem; color: var(--ink);
+  }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { padding: 1.5rem 0 1.5rem 1.5rem; border-left: 1px solid var(--border); position: relative; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -4px; top: 1.75rem;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .tl-year { font-size: 0.75rem; color: var(--accent2); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .tl-title { font-weight: 500; margin-bottom: 0.15rem; }
+  .tl-org { font-size: 0.85rem; color: var(--muted); }
+
+  /* SERVICES */
+  #services { background: var(--paper); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 2rem; border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .service-icon {
+    width: 44px; height: 44px; background: var(--paper);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1.25rem;
+    border: 1px solid var(--border);
+  }
+  .service-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.75rem; }
+  .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+  .service-price { margin-top: 1.25rem; font-size: 0.8rem; color: var(--accent); font-weight: 500; }
+
+  /* PUBLICATIONS */
+  #publications { background: #fff; }
+  .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+  .pub-item {
+    border: 1px solid var(--border); padding: 1.5rem 1.75rem;
+    border-radius: 8px; background: var(--card);
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .pub-item:hover { border-color: var(--accent); }
+  .pub-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: var(--border); line-height: 1;
+    min-width: 2rem; text-align: center;
+  }
+  .pub-content {}
+  .pub-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 0.5rem;
+  }
+  .badge-published { background: #eaf5ee; color: #1a7a3a; }
+  .badge-review { background: #fef3e2; color: #9a5a00; }
+  .badge-patent { background: #eef0fd; color: var(--accent); }
+  .pub-content p { font-size: 0.9rem; color: var(--muted); margin-top: 0.35rem; }
+
+  /* CV */
+  #cv { background: var(--accent); }
+  #cv .section-inner { text-align: center; padding: 5rem 2rem; }
+  #cv h2 { color: #fff; margin-bottom: 1rem; }
+  #cv p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 2.5rem; font-weight: 300; }
+  .cv-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--accent);
+    padding: 0.85rem 2rem; border-radius: 4px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-white:hover { background: var(--paper); transform: translateY(-1px); }
+  .btn-outline-white {
+    border: 1px solid rgba(255,255,255,0.35); color: #fff;
+    padding: 0.85rem 2rem; border-radius: 4px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 400;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline-white:hover { border-color: #fff; transform: translateY(-1px); }
+
+  /* BUSINESSES / FOR CLIENTS */
+  #businesses { background: var(--paper); }
+  .biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .biz-left h3 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 1rem; }
+  .biz-left p { color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
+  .process-steps { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+  .step { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-num {
+    width: 28px; height: 28px; background: var(--accent);
+    color: #fff; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 500; flex-shrink: 0; margin-top: 2px;
+  }
+  .step-text strong { display: block; font-weight: 500; margin-bottom: 0.15rem; }
+  .step-text span { font-size: 0.875rem; color: var(--muted); }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem;
+  }
+  .contact-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; }
+  .contact-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .contact-row:last-of-type { border-bottom: none; }
+  .contact-icon { font-size: 1rem; width: 20px; text-align: center; }
+  .contact-row a { color: var(--accent); text-decoration: none; }
+  .contact-row a:hover { text-decoration: underline; }
+  .contact-note { font-size: 0.8rem; color: var(--muted); margin-top: 1.5rem; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.4);
+    text-align: center; padding: 2rem;
+    font-size: 0.82rem;
+  }
+  footer span { color: rgba(255,255,255,0.7); }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.78rem; }
+    #home { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 1.5rem 3rem; }
+    .hero-right { padding: 3rem 1.5rem; }
+    .hero-right::before { font-size: 10rem; }
+    .stat-row { flex-direction: row; gap: 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .biz-grid { grid-template-columns: 1fr; }
+    .section-inner { padding: 3.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Yash Kumar</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#publications">Research</a>
+    <a href="#cv">CV</a>
+    <a href="#businesses" class="nav-btn">For Businesses</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-tag">PhD Researcher · IIT Kanpur</div>
+    <h1>Building <em>intelligent</em> AI systems that work.</h1>
+    <p class="hero-desc">I design and deliver custom AI applications — chatbots, decision agents, and intelligent tools — grounded in research-level expertise in Generative AI and LLMs.</p>
+    <div class="hero-actions">
+      <a href="#businesses" class="btn-primary">Work with me</a>
+      <a href="#about" class="btn-secondary">Learn more</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years of AI research</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Publications & 1 patent filed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">IIT</div>
+        <div class="stat-label">Kanpur · IBM Research</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">PhD</div>
+        <div class="stat-label">Applied Generative AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">About</span>
+      <h2>Researcher. Builder. Problem solver.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I'm <strong>Yash Kumar</strong>, a PhD researcher in Computer Science at <strong>IIT Kanpur</strong>, advised by Prof. Subhajit Roy. My research sits at the intersection of Generative AI, LLMs, and real-world applications — from education and software engineering to security.</p>
+        <p>Before my PhD, I worked as an <strong>Automation Engineer at Wipro Technologies</strong> and completed a research internship at <strong>IBM Research Lab</strong>, where I worked on improving code LLMs using program analysis.</p>
+        <p>I've been selected for the <strong>Amazon Machine Learning Summer School</strong> (top 1 percentile across India) and have published at ACL and other venues. I also hold a patent filed with DRDO.</p>
+        <p>Outside research, I build practical AI applications — and I'm now available to deliver custom AI solutions for businesses.</p>
+        <div class="skills-block">
+          <h3>Technical skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">RAG</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">Agentic AI</span>
+            <span class="skill-tag">DSPy</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NLP</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-year">2020 – Present</div>
+            <div class="tl-title">PhD, Computer Science</div>
+            <div class="tl-org">IIT Kanpur · Teaching Assistant</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">May – Jan 2023</div>
+            <div class="tl-title">Research Intern</div>
+            <div class="tl-org">IBM Research Lab, Bengaluru</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2018 – 2019</div>
+            <div class="tl-title">Automation Engineer</div>
+            <div class="tl-org">Wipro Technologies, Bengaluru</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2013 – 2017</div>
+            <div class="tl-title">BTech, Computer Science</div>
+            <div class="tl-org">UIIT, HP University · Ranked 2nd in batch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Services</span>
+      <h2>What I build for clients.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F4AC;</div>
+        <h3>Custom AI chatbot</h3>
+        <p>A fully trained chatbot for your business — with your knowledge base, your tone, deployed on your platform. Powered by your own API key and model of choice.</p>
+        <div class="service-price">One-time build · maintenance on request</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F9E0;</div>
+        <h3>Decision-making agent</h3>
+        <p>Autonomous AI agents that reason across multiple steps, use tools, and make decisions — for workflows like document review, research, or lead qualification.</p>
+        <div class="service-price">One-time build · maintenance on request</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F4C4;</div>
+        <h3>Document intelligence</h3>
+        <p>Upload your documents, policies, or manuals — and let your team query them in plain language. Built on RAG with accurate source attribution.</p>
+        <div class="service-price">One-time build · maintenance on request</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F527;</div>
+        <h3>AI integration</h3>
+        <p>Add AI capabilities to your existing product or workflow. From prompt engineering to full LLM pipeline design — model-agnostic and API-key-agnostic.</p>
+        <div class="service-price">Project-based pricing</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F50D;</div>
+        <h3>AI audit & advisory</h3>
+        <p>Already using AI tools? I'll review your setup, identify gaps, and recommend improvements — drawing on research-level understanding of model behaviour.</p>
+        <div class="service-price">Hourly or fixed-scope</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">&#x1F4CA;</div>
+        <h3>Research consultation</h3>
+        <p>Academic or industry teams needing expert guidance on LLMs, RAG pipelines, agentic systems, or AI evaluation — I bring both depth and practical clarity.</p>
+        <div class="service-price">Hourly rate available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">Research</span>
+      <h2>Publications & patents.</h2>
+    </div>
+    <div class="pub-list">
+      <div class="pub-item fade-in">
+        <div class="pub-num">1</div>
+        <div class="pub-content">
+          <span class="pub-badge badge-published">Published · ACL 2025</span>
+          <strong>Studying the capabilities of LLMs in solving Combinatorics Problems posed in Hindi</strong>
+          <p>Yash Kumar & Subhajit Roy · First Workshop on NLP for Indo-Aryan and Dravidian Languages, Abu Dhabi · ACL Proceedings</p>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-content" style="padding-left:0">
+          <div style="display:flex;gap:1.5rem;align-items:flex-start">
+          <div class="pub-num">2</div>
+          <div>
+          <span class="pub-badge badge-published">Presented · COMPUTE 2024</span>
+          <strong>Studying the capabilities of LLMs in solving Combinatorics Problems posed in Hindi</strong>
+          <p>Yash Kumar & Subhajit Roy · Accepted for Poster Presentation at COMPUTE 2024</p>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-num">3</div>
+        <div class="pub-content">
+          <span class="pub-badge badge-review">Under Review</span>
+          <strong>Can LLMs Aid High-school Mathematics Education in Indian Regional Languages?</strong>
+          <p>Yash Kumar & Subhajit Roy · Under review at a peer-reviewed venue</p>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-num">4</div>
+        <div class="pub-content">
+          <span class="pub-badge badge-patent">Patent Filed · DRDO</span>
+          <strong>Intelligent System for Smart Platform Vulnerability Analysis and Testing</strong>
+          <p>AI in Security · Patent filed with DRDO, New Delhi · Details disclosed upon license issuance</p>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-num">5</div>
+        <div class="pub-content">
+          <span class="pub-badge badge-review">In Preparation</span>
+          <strong>Proving Program Termination using Generative Artificial Intelligence</strong>
+          <p>Yash Kumar & Subhajit Roy · AI in Software Engineering</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="section-inner">
+    <span class="section-tag" style="color:rgba(255,255,255,0.5)">Curriculum Vitae</span>
+    <h2>Download my full CV.</h2>
+    <p>Complete academic and professional history — research, experience, publications, and awards.</p>
+    <div class="cv-actions">
+      <a href="mailto:yashrajverma.academics@gmail.com?subject=CV Request" class="btn-white">Request CV by email</a>
+      <a href="mailto:yashk@iitk.ac.in" class="btn-outline-white">IIT Kanpur email</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESSES -->
+<section id="businesses">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-tag">For Businesses</span>
+      <h2>Let's build your AI application.</h2>
+    </div>
+    <div class="biz-grid">
+      <div class="fade-in">
+        <h3>How it works</h3>
+        <p>I build custom AI applications tailored to your exact needs — delivered as a finished product you own completely. You bring your own API keys and model preferences. I handle everything else.</p>
+        <p>Ongoing maintenance is available whenever you need updates, new features, or fixes.</p>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Discovery call</strong>
+              <span>We discuss your problem, use case, and what success looks like.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Proposal & quote</strong>
+              <span>I send a clear scope, timeline, and fixed price. No surprises.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Build & deliver</strong>
+              <span>I build the application and hand it over with documentation.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Maintenance (optional)</strong>
+              <span>Future changes billed separately — only when you need them.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="contact-card">
+          <h3>Get in touch</h3>
+          <div class="contact-row">
+            <span class="contact-icon">&#x2709;</span>
+            <a href="mailto:yashrajverma.academics@gmail.com">yashrajverma.academics@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">&#x1F4DE;</span>
+            <span>+91 98995 67069</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">&#x1F4DE;</span>
+            <span>+91 98578 72869</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">&#x1F4CD;</span>
+            <span>IIT Kanpur, Uttar Pradesh, India</span>
+          </div>
+          <p class="contact-note">I typically respond within 24 hours. For urgent enquiries, email works best. I'm open to clients across India and internationally.</p>
+          <a href="mailto:yashrajverma.academics@gmail.com?subject=AI Project Enquiry" class="btn-primary" style="margin-top:1.5rem;display:block;text-align:center;">Send a project enquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Yash Kumar</span> · PhD Researcher, IIT Kanpur · yashrajverma.academics@gmail.com
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
